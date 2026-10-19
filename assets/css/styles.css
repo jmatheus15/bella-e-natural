@@ -5,7 +5,6 @@
   --pink: #fa2462;      /* rosa da logo: fundos e texto grande */
   --pink-ink: #c70f47;  /* rosa escuro: texto pequeno e botões com texto branco (contraste AA) */
   --blush: #ffe4ec;
-  --petal: #f7c3d3;
   --mist: #f1f0f0;      /* fundo cinza das fotos de produto */
   --line: #e3e1e1;
   --muted: #5f5b5c;
@@ -212,10 +211,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .cat .media > img { transition: transform .6s var(--ease); }
 .cat:hover .media > img { transform: scale(1.03); }
 .cat:hover .cat__name { text-decoration: underline; text-underline-offset: 3px; }
-.rail--cats > li:nth-child(6n + 3) .ph { background: var(--ink); color: #fff; }
-.rail--cats > li:nth-child(6n + 4) .ph { background: var(--petal); color: var(--ink); }
-.rail--cats > li:nth-child(6n + 5) .ph { background: var(--blush); color: var(--pink-ink); }
-.rail--cats > li:nth-child(6n + 6) .ph { background: var(--pink); color: var(--ink); }
+.rail--cats .ph { background: var(--blush); color: var(--pink-ink); }
 
 /* Produtos */
 .filters { display: flex; gap: 8px; margin: 0 calc(var(--gutter) * -1) 16px; padding: 0 var(--gutter); overflow-x: auto; scrollbar-width: none; }
