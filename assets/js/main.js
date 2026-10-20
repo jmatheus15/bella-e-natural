@@ -6,6 +6,9 @@ const esc = (value) => String(value).replace(/[&<>"']/g, (c) => `&#${c.charCodeA
 const icon = (id) => `<svg class="icon" aria-hidden="true"><use href="#i-${id}"/></svg>`;
 const wa = (text) => waLink(store.whatsapp, text);
 const categoryById = Object.fromEntries(categories.map((c) => [c.id, c]));
+// Roupas ficam na vitrine Feminino/Masculino e na seção Infantil; o resto em "Beleza e bem-estar".
+const CLOTHING = new Set(['fitness', 'masculino', 'infantil']);
+const sectionFor = (id) => ({ fitness: '#moda', masculino: '#moda', infantil: '#infantil' })[id] ?? '#bem-estar';
 
 // Fotos reais quando houver; senão, espaço reservado identificado. A 2ª foto aparece no hover.
 function media(images, alt, label, word = '') {
@@ -67,17 +70,40 @@ function productCard(p) {
 }
 
 // Categorias: menu, rodapé e faixa usam a mesma lista.
-const catLinks = categories.map((c) => `<li><a href="#destaques" data-cat="${c.id}">${esc(c.name)}</a></li>`).join('');
+const catLinks = categories.map((c) => `<li><a href="${sectionFor(c.id)}" data-cat="${c.id}">${esc(c.name)}</a></li>`).join('');
 $('#menu-cats').innerHTML = catLinks;
 $('#footer-cats').innerHTML = catLinks;
 $('#cat-list').innerHTML = categories.map((c) => `<li>
-  <a class="cat" href="#destaques" data-cat="${c.id}">
+  <a class="cat" href="${sectionFor(c.id)}" data-cat="${c.id}">
     <div class="media media--tall">${media(c.image, c.name, `Espaço para foto da categoria ${c.name}`, c.short)}</div>
     <span class="cat__name">${esc(c.name)}</span>
   </a>
 </li>`).join('');
 
-// Vitrines por categoria (Masculino, Infantil): mesmo card dos destaques.
+// Vitrine principal: feminino por padrão, botão troca para masculino. Mostra 8 peças por vez.
+const modaGrid = $('#moda-grid');
+const modaMore = $('#moda-more');
+const MODA_PAGE = 8;
+let gender = 'fitness';
+let modaShown = MODA_PAGE;
+
+function renderModa() {
+  const list = products.filter((p) => p.name && p.category === gender);
+  modaGrid.innerHTML = list.slice(0, modaShown).map(productCard).join('');
+  modaMore.parentElement.hidden = list.length <= modaShown;
+  document.querySelectorAll('.toggle [data-gender]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.gender === gender)));
+}
+
+function setGender(id) {
+  gender = id;
+  modaShown = MODA_PAGE;
+  renderModa();
+}
+
+modaMore.addEventListener('click', () => { modaShown += MODA_PAGE; renderModa(); });
+renderModa();
+
+// Vitrines por categoria (Infantil): mesmo card das outras vitrines.
 document.querySelectorAll('[data-category]').forEach((ul) => {
   ul.innerHTML = products.filter((p) => p.name && p.category === ul.dataset.category).map(productCard).join('');
 });
@@ -103,7 +129,9 @@ const productRail = $('#product-list');
 let current = 'all';
 
 function renderProducts() {
-  const list = current === 'all' ? products.filter((p) => p.name) : products.filter((p) => p.category === current);
+  const list = current === 'all'
+    ? products.filter((p) => p.name && !CLOTHING.has(p.category))
+    : products.filter((p) => p.category === current);
   productRail.innerHTML = list.length
     ? list.map(productCard).join('')
     : `<li class="empty">Ainda não há produtos cadastrados aqui. <a href="${esc(wa(`Olá! Quero conhecer os produtos de ${categoryById[current].name} da Bella e Natural.`))}" target="_blank" rel="noopener">Pergunte pelo WhatsApp</a>.</li>`;
@@ -117,7 +145,7 @@ function setFilter(id) {
   renderProducts();
 }
 
-$('#filters').innerHTML = [{ id: 'all', name: 'Todos' }, ...categories]
+$('#filters').innerHTML = [{ id: 'all', name: 'Todos' }, ...categories.filter((c) => !CLOTHING.has(c.id))]
   .map((c) => `<button class="chip" type="button" data-filter="${c.id}" aria-pressed="${c.id === current}">${esc(c.name)}</button>`)
   .join('');
 renderProducts();
@@ -194,7 +222,10 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('click', (e) => {
   const cat = e.target.closest('[data-cat]');
   const filter = e.target.closest('[data-filter]');
-  if (cat) setFilter(cat.dataset.cat);
+  const genderLink = e.target.closest('[data-gender]');
+  if (genderLink) setGender(genderLink.dataset.gender);
+  if (cat && (cat.dataset.cat === 'fitness' || cat.dataset.cat === 'masculino')) setGender(cat.dataset.cat);
+  else if (cat && cat.dataset.cat !== 'infantil') setFilter(cat.dataset.cat);
   if (filter) setFilter(filter.dataset.filter);
   if (e.target.closest('#menu a')) { setMenu(false, false); setCats(false); }
   if (desktop.matches && !e.target.closest('.menu__item--cats')) setCats(false);

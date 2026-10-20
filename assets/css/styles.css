@@ -169,6 +169,16 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .hero__controls .icon-btn:hover { color: #fff; opacity: .75; }
 @media (min-width: 1024px) { .hero__controls { top: auto; bottom: 16px; right: 16px; } }
 .feature { padding-top: 8px; }
+/* Vitrine principal com botões Feminino/Masculino (como "How do you train?" da Gymshark) */
+.toggle { display: flex; gap: 12px; margin-bottom: 20px; }
+.toggle__btn { min-width: 110px; min-height: 48px; padding: 0 20px; border: 1.5px solid var(--line); color: var(--muted); font-size: 16px; transition: border-color .2s, color .2s; }
+.toggle__btn:hover { border-color: var(--ink); color: var(--ink); }
+.toggle__btn[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 8px; }
+@media (min-width: 768px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 32px 12px; } }
+@media (min-width: 1024px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 36px 16px; } }
+.moda .sec-title { margin-bottom: 16px; }
+.moda__more { display: flex; justify-content: center; margin-top: 32px; }
 .collection { padding-block: 8px 48px; }
 @media (min-width: 1024px) { .collection { padding-bottom: 72px; } }
 .collection__head { margin-top: 24px; }

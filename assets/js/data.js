@@ -41,8 +41,19 @@ const p = (name, color, category, images, description = '') => ({
 const img = (file) => `images/products/${file}`;
 
 export const products = [
+  p('Macaquinho com zíper e gola', 'Várias cores', 'fitness', [img('macaquinho-ziper-gola-cores.jpg')],
+    'Preto, cinza, azul-marinho, marrom e vinho.'),
+  p('Conjunto top e bermuda', 'Preto', 'fitness',
+    [img('conjunto-top-bermuda-preto.jpg'), img('conjunto-top-bermuda-preto-2.jpg')]),
+  { ...p('Short Box', 'Várias cores', 'fitness', [img('short-box-cores.jpg')],
+    'R$ 95,00 no cartão. Tamanhos P, M, G e GG.'), price: 85 },
   p('Bermuda com bolsos', 'Várias cores', 'fitness', [img('bermuda-bolsos-cores.jpg')], 'Tamanhos M e G.'),
-  p('Conjunto top e bermuda', 'Preto', 'fitness', [img('conjunto-top-bermuda-preto.jpg')]),
+  p('Conjunto Ianca', 'Várias cores', 'fitness', [img('conjunto-ianca-cores.jpg')]),
+  p('Conjunto cropped com zíper e bermuda', 'Rosa-claro', 'fitness', [img('conjunto-cropped-ziper-rosa.jpg')]),
+  { ...p('Macaquinho infantil', 'Off-white', 'infantil', [img('infantil-macaquinho-off-white.jpg')],
+    'R$ 70,00 no cartão. Tamanho 12 anos.'), price: 110, promoPrice: 60 },
+  p('Florafree', 'Flora Pura', 'naturais', [img('florafree.jpg')],
+    'Suplemento em cápsulas com vitaminas A, B5, E, cromo e cafeína. 60 cápsulas.'),
   p('Camiseta esportiva', 'Branca', 'masculino', [img('masculino-camiseta-branca.jpg')]),
   p('Conjunto infantil cropped e bermuda', 'Rosa', 'infantil', [img('infantil-conjunto-rosa.jpg')]),
   p('Linha Flora Care Rosa Mosqueta', 'Flora Pura', 'beleza', [img('linha-rosa-mosqueta.jpg')],
@@ -97,7 +108,14 @@ export const products = [
     [img('argila-branca.jpg'), img('mascara-argila-branca.jpg')], 'Para pele sensível e desidratada.'),
   p('Óleo Essencial de Hortelã', '20 ml', 'oleos', [img('oleo-essencial-hortela.jpg')],
     'Aroma refrescante; no cabelo, estimula o crescimento.'),
-  p('Jaqueta leve', 'Branca', 'fitness', [img('jaqueta-branca.jpg')]),
+  p('Jaqueta leve', 'Branca', 'fitness', [img('jaqueta-leve-branca-frente.jpg'), img('jaqueta-branca.jpg')]),
+  p('Jaqueta com zíper manga longa', 'Branca', 'fitness', [img('jaqueta-ziper-manga-longa-branca.jpg')]),
+  p('Macacão flare', 'Preto', 'fitness', [img('macacao-flare-preto.jpg')]),
+  p('Macaquinho manga curta', 'Preto', 'fitness', [img('macaquinho-manga-curta-preto.jpg')]),
+  p('Vestido infantil', 'Rosa e preto', 'infantil', [img('infantil-vestido-rosa-preto.jpg')]),
+  p('Conjunto infantil camiseta e bermuda', 'Preto com azul ou rosa', 'infantil', [img('infantil-camiseta-bermuda.jpg')]),
+  p('Conjunto infantil top e short listrado', 'Preto', 'infantil', [img('infantil-top-short-listrado.jpg')],
+    'Tamanhos 7 e 9 anos.'),
   p('Jaqueta com zíper', 'Branca', 'fitness', [img('jaqueta-ziper-branca.jpg')]),
   p('Conjunto top e legging', 'Rosa', 'fitness', [img('conjunto-top-legging-rosa.jpg')]),
   p('Blusa com zíper manga curta', 'Amarela', 'fitness', [img('blusa-ziper-amarela.jpg')]),
@@ -116,6 +134,9 @@ export const products = [
     [img('conjunto-bolsos-marinho.jpg')], 'Bolsos laterais para celular e fone.'),
   p('Conjunto cropped e short', 'Várias cores', 'fitness', [img('conjunto-cropped-short-pastel.jpg')]),
   p('Bolsa compacta', 'Várias cores', 'acessorios', [img('bolsa-compacta.jpg')]),
+  p('Bolsa de academia acolchoada', 'Rosa, off-white, preto e bege', 'acessorios', [img('bolsa-academia-acolchoada.jpg')],
+    'Fechamento com zíper, bolsos internos e externos.'),
+  { ...p('Bolsa Luxo', 'Preto, caramelo e off-white', 'acessorios', [img('bolsa-luxo-veludo.jpg')]), price: 70 },
 ];
 
 // Campanha de kits e ofertas. Com `title` vazio, a seção mostra o convite genérico.

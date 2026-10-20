@@ -60,8 +60,8 @@
             </button>
           </div>
           <ul class="menu__list">
-            <li class="menu__item"><a class="menu__link" href="#destaques" data-cat="fitness">Feminino</a></li>
-            <li class="menu__item"><a class="menu__link" href="#masculino">Masculino</a></li>
+            <li class="menu__item"><a class="menu__link" href="#moda" data-gender="fitness">Feminino</a></li>
+            <li class="menu__item"><a class="menu__link" href="#moda" data-gender="masculino">Masculino</a></li>
             <li class="menu__item"><a class="menu__link" href="#infantil">Infantil</a></li>
             <li class="menu__item menu__item--cats">
               <button class="menu__link" id="cats-toggle" type="button" aria-expanded="false" aria-controls="menu-cats">
@@ -108,7 +108,7 @@
             <h1 class="display banner__title hero__title" id="hero-title"><span>Seu estilo.</span> <span>Sua beleza.</span> <span>Sua essência.</span></h1>
             <p class="banner__text">A loja mais cheirosa, estilo, fitness. Descubra produtos que combinam cuidado, estilo e bem-estar.</p>
             <div class="btn-row">
-              <a class="btn btn--light" href="#destaques">Explorar produtos</a>
+              <a class="btn btn--light" href="#moda">Explorar produtos</a>
               <a class="btn btn--ghost" href="https://wa.me/5583999976274?text=Bella+all+natural" target="_blank" rel="noopener">Pedir pelo WhatsApp</a>
             </div>
           </div>
@@ -124,16 +124,17 @@
       </div>
     </section>
 
-    <section class="section" id="categorias" aria-labelledby="categorias-title">
+    <!-- Vitrine principal: começa no feminino; o botão troca para o masculino (padrão Gymshark). -->
+    <section class="section moda" id="moda" aria-labelledby="moda-title">
       <div class="wrap">
-        <div class="sec-head">
-          <h2 class="sec-title" id="categorias-title">Compre por categoria</h2>
-          <div class="rail-nav">
-            <button class="rail-btn" type="button" data-rail="prev" aria-controls="cat-list" aria-label="Categorias anteriores"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
-            <button class="rail-btn" type="button" data-rail="next" aria-controls="cat-list" aria-label="Próximas categorias"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
-          </div>
+        <h2 class="sec-title" id="moda-title">Moda fitness</h2>
+        <div class="toggle" role="group" aria-label="Escolher moda">
+          <button class="toggle__btn" type="button" data-gender="fitness" aria-pressed="true">Feminino</button>
+          <button class="toggle__btn" type="button" data-gender="masculino" aria-pressed="false">Masculino</button>
         </div>
-        <ul class="rail rail--cats" id="cat-list"></ul>
+        <ul class="grid" id="moda-grid" aria-live="polite"></ul>
+        <div class="moda__more"><button class="btn btn--line" id="moda-more" type="button">Ver mais peças</button></div>
+        <p class="note">Pedido, pagamento e entrega são combinados com a loja pelo WhatsApp. Reservamos peças somente mediante pagamento.</p>
       </div>
     </section>
 
@@ -149,7 +150,7 @@
             <h2 class="display banner__title banner__title--md" id="bolsos-title">Conjunto com bolsos</h2>
             <p class="banner__text">Short com bolsos laterais para celular e fone, em várias cores.</p>
             <div class="btn-row">
-              <a class="btn btn--light" href="#destaques" data-cat="fitness">Ver o conjunto</a>
+              <a class="btn btn--light" href="#moda" data-gender="fitness">Ver o conjunto</a>
               <a class="btn btn--ghost" href="https://wa.me/5583999976274?text=Ol%C3%A1!%20Quais%20cores%20do%20conjunto%20regata%20e%20short%20com%20bolsos%20est%C3%A3o%20dispon%C3%ADveis%20na%20Bella%20e%20Natural%3F" target="_blank" rel="noopener">Consultar cores</a>
             </div>
           </div>
@@ -157,46 +158,16 @@
       </div>
     </section>
 
-    <section class="section" id="destaques" aria-labelledby="destaques-title">
+    <section class="section" id="categorias" aria-labelledby="categorias-title">
       <div class="wrap">
         <div class="sec-head">
-          <h2 class="sec-title" id="destaques-title">Destaques</h2>
+          <h2 class="sec-title" id="categorias-title">Compre por categoria</h2>
           <div class="rail-nav">
-            <button class="rail-btn" type="button" data-rail="prev" aria-controls="product-list" aria-label="Produtos anteriores"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
-            <button class="rail-btn" type="button" data-rail="next" aria-controls="product-list" aria-label="Próximos produtos"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+            <button class="rail-btn" type="button" data-rail="prev" aria-controls="cat-list" aria-label="Categorias anteriores"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+            <button class="rail-btn" type="button" data-rail="next" aria-controls="cat-list" aria-label="Próximas categorias"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
           </div>
         </div>
-        <div class="filters" id="filters" role="group" aria-label="Filtrar por categoria"></div>
-        <ul class="rail rail--products" id="product-list" aria-live="polite"></ul>
-        <p class="note">Não há carrinho no site: pedido, pagamento e entrega são combinados com a loja pelo WhatsApp.</p>
-      </div>
-    </section>
-
-    <!-- Masculino: banner + vitrine (padrão Gymshark). Troque as fotos abaixo; os produtos vêm de assets/js/data.js. -->
-    <section class="collection" id="masculino" aria-labelledby="masculino-title">
-      <div class="wrap">
-        <div class="banner">
-          <div class="banner__media banner__media--2">
-            <img src="images/products/masculino-camiseta-branca.jpg" alt="Modelo usando camiseta esportiva branca" loading="lazy">
-            <img src="images/products/masculino-camiseta-verde-limao.jpg" alt="Camiseta esportiva verde-limão vista de frente e de costas" loading="lazy">
-          </div>
-          <div class="banner__content">
-            <h2 class="display banner__title banner__title--md" id="masculino-title">Masculino</h2>
-            <p class="banner__text">Camisetas esportivas para o treino e para o dia a dia.</p>
-            <div class="btn-row">
-              <a class="btn btn--light" href="#masculino-produtos">Ver masculino</a>
-              <a class="btn btn--ghost" href="https://wa.me/5583999976274?text=Ol%C3%A1!%20Quais%20tamanhos%20e%20cores%20das%20camisetas%20masculinas%20est%C3%A3o%20dispon%C3%ADveis%20na%20Bella%20e%20Natural%3F" target="_blank" rel="noopener">Consultar tamanhos</a>
-            </div>
-          </div>
-        </div>
-        <div class="sec-head collection__head" id="masculino-produtos">
-          <h3 class="sec-title">Moda masculina</h3>
-          <div class="rail-nav">
-            <button class="rail-btn" type="button" data-rail="prev" aria-controls="rail-masculino" aria-label="Anteriores"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
-            <button class="rail-btn" type="button" data-rail="next" aria-controls="rail-masculino" aria-label="Próximos"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
-          </div>
-        </div>
-        <ul class="rail rail--products" id="rail-masculino" data-category="masculino"></ul>
+        <ul class="rail rail--cats" id="cat-list"></ul>
       </div>
     </section>
 
@@ -225,6 +196,21 @@
           </div>
         </div>
         <ul class="rail rail--products" id="rail-infantil" data-category="infantil"></ul>
+      </div>
+    </section>
+
+    <section class="section" id="bem-estar" aria-labelledby="bem-estar-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 class="sec-title" id="bem-estar-title">Beleza e bem-estar</h2>
+          <div class="rail-nav">
+            <button class="rail-btn" type="button" data-rail="prev" aria-controls="product-list" aria-label="Produtos anteriores"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+            <button class="rail-btn" type="button" data-rail="next" aria-controls="product-list" aria-label="Próximos produtos"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+          </div>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="Filtrar por categoria"></div>
+        <ul class="rail rail--products" id="product-list" aria-live="polite"></ul>
+        <p class="note">Não há carrinho no site: pedido, pagamento e entrega são combinados com a loja pelo WhatsApp.</p>
       </div>
     </section>
 
@@ -303,7 +289,8 @@
         <nav aria-labelledby="f-nav">
           <h2 class="footer__title" id="f-nav">Navegação</h2>
           <ul>
-            <li><a href="#destaques">Destaques</a></li>
+            <li><a href="#moda">Moda fitness</a></li>
+            <li><a href="#bem-estar">Beleza e bem-estar</a></li>
             <li><a href="#ofertas">Ofertas</a></li>
             <li><a href="#a-loja">A loja</a></li>
             <li><a href="#contato">Contato</a></li>
