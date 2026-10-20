@@ -169,6 +169,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .hero__controls .icon-btn:hover { color: #fff; opacity: .75; }
 @media (min-width: 1024px) { .hero__controls { top: auto; bottom: 16px; right: 16px; } }
 .feature { padding-top: 8px; }
+.collection { padding-block: 8px 48px; }
+@media (min-width: 1024px) { .collection { padding-bottom: 72px; } }
+.collection__head { margin-top: 24px; }
 
 /* Faixas roláveis (categorias e produtos) */
 .rail {

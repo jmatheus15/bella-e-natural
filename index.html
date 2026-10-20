@@ -60,16 +60,15 @@
             </button>
           </div>
           <ul class="menu__list">
+            <li class="menu__item"><a class="menu__link" href="#destaques" data-cat="fitness">Feminino</a></li>
+            <li class="menu__item"><a class="menu__link" href="#masculino">Masculino</a></li>
+            <li class="menu__item"><a class="menu__link" href="#infantil">Infantil</a></li>
             <li class="menu__item menu__item--cats">
               <button class="menu__link" id="cats-toggle" type="button" aria-expanded="false" aria-controls="menu-cats">
                 Categorias <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
               </button>
               <ul class="menu__cats" id="menu-cats" hidden></ul>
             </li>
-            <li class="menu__item"><a class="menu__link" href="#destaques">Destaques</a></li>
-            <li class="menu__item"><a class="menu__link" href="#ofertas">Ofertas</a></li>
-            <li class="menu__item"><a class="menu__link" href="#a-loja">A loja</a></li>
-            <li class="menu__item"><a class="menu__link" href="#contato">Contato</a></li>
           </ul>
           <div class="menu__foot">
             <a class="btn btn--dark" href="https://wa.me/5583999976274?text=Bella+all+natural" target="_blank" rel="noopener">
@@ -170,6 +169,62 @@
         <div class="filters" id="filters" role="group" aria-label="Filtrar por categoria"></div>
         <ul class="rail rail--products" id="product-list" aria-live="polite"></ul>
         <p class="note">Não há carrinho no site: pedido, pagamento e entrega são combinados com a loja pelo WhatsApp.</p>
+      </div>
+    </section>
+
+    <!-- Masculino: banner + vitrine (padrão Gymshark). Troque as fotos abaixo; os produtos vêm de assets/js/data.js. -->
+    <section class="collection" id="masculino" aria-labelledby="masculino-title">
+      <div class="wrap">
+        <div class="banner">
+          <div class="banner__media banner__media--2">
+            <img src="images/products/masculino-camiseta-branca.jpg" alt="Modelo usando camiseta esportiva branca" loading="lazy">
+            <img src="images/products/masculino-camiseta-verde-limao.jpg" alt="Camiseta esportiva verde-limão vista de frente e de costas" loading="lazy">
+          </div>
+          <div class="banner__content">
+            <h2 class="display banner__title banner__title--md" id="masculino-title">Masculino</h2>
+            <p class="banner__text">Camisetas esportivas para o treino e para o dia a dia.</p>
+            <div class="btn-row">
+              <a class="btn btn--light" href="#masculino-produtos">Ver masculino</a>
+              <a class="btn btn--ghost" href="https://wa.me/5583999976274?text=Ol%C3%A1!%20Quais%20tamanhos%20e%20cores%20das%20camisetas%20masculinas%20est%C3%A3o%20dispon%C3%ADveis%20na%20Bella%20e%20Natural%3F" target="_blank" rel="noopener">Consultar tamanhos</a>
+            </div>
+          </div>
+        </div>
+        <div class="sec-head collection__head" id="masculino-produtos">
+          <h3 class="sec-title">Moda masculina</h3>
+          <div class="rail-nav">
+            <button class="rail-btn" type="button" data-rail="prev" aria-controls="rail-masculino" aria-label="Anteriores"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+            <button class="rail-btn" type="button" data-rail="next" aria-controls="rail-masculino" aria-label="Próximos"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+          </div>
+        </div>
+        <ul class="rail rail--products" id="rail-masculino" data-category="masculino"></ul>
+      </div>
+    </section>
+
+    <!-- Infantil: banner + vitrine (padrão Gymshark). Troque as fotos abaixo; os produtos vêm de assets/js/data.js. -->
+    <section class="collection" id="infantil" aria-labelledby="infantil-title">
+      <div class="wrap">
+        <div class="banner">
+          <div class="banner__media banner__media--2">
+            <img src="images/products/infantil-conjunto-rosa.jpg" alt="Menina usando conjunto infantil rosa de cropped e bermuda" loading="lazy">
+            <img src="images/products/infantil-conjunto-azul.jpg" alt="Menina usando conjunto infantil azul de cropped e bermuda" loading="lazy">
+          </div>
+          <div class="banner__content">
+            <h2 class="display banner__title banner__title--md" id="infantil-title">Infantil</h2>
+            <p class="banner__text">Conjuntos fitness infantis de cropped e bermuda.</p>
+            <div class="btn-row">
+              <a class="btn btn--light" href="#infantil-produtos">Ver infantil</a>
+              <a class="btn btn--ghost" href="https://wa.me/5583999976274?text=Ol%C3%A1!%20Quais%20tamanhos%20e%20cores%20dos%20conjuntos%20infantis%20est%C3%A3o%20dispon%C3%ADveis%20na%20Bella%20e%20Natural%3F" target="_blank" rel="noopener">Consultar tamanhos</a>
+            </div>
+          </div>
+        </div>
+        <div class="sec-head collection__head" id="infantil-produtos">
+          <h3 class="sec-title">Moda infantil</h3>
+          <div class="rail-nav">
+            <button class="rail-btn" type="button" data-rail="prev" aria-controls="rail-infantil" aria-label="Anteriores"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+            <button class="rail-btn" type="button" data-rail="next" aria-controls="rail-infantil" aria-label="Próximos"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+          </div>
+        </div>
+        <ul class="rail rail--products" id="rail-infantil" data-category="infantil"></ul>
       </div>
     </section>
 

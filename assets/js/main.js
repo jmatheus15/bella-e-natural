@@ -77,6 +77,11 @@ $('#cat-list').innerHTML = categories.map((c) => `<li>
   </a>
 </li>`).join('');
 
+// Vitrines por categoria (Masculino, Infantil): mesmo card dos destaques.
+document.querySelectorAll('[data-category]').forEach((ul) => {
+  ul.innerHTML = products.filter((p) => p.name && p.category === ul.dataset.category).map(productCard).join('');
+});
+
 // Setas das faixas roláveis.
 const rails = [...document.querySelectorAll('.rail')];
 function updateArrows(rail) {
