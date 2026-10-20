@@ -11,3 +11,16 @@ export function productMessage(product, categoryName) {
   if (product.available === false) return `Olá! O produto ${name} da Bella e Natural vai voltar ao estoque?`;
   return `Olá! Tenho interesse no produto ${name} da Bella e Natural.`;
 }
+
+// Busca sem diferenciar acentos e maiúsculas ("oleo" acha "Óleo"); todas as palavras precisam aparecer.
+const fold = (text) => String(text ?? '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+
+export function searchProducts(products, query, categoryName = () => '') {
+  const words = fold(query).split(/\s+/).filter(Boolean);
+  if (!words.length) return [];
+  return products.filter((p) => {
+    if (!p.name) return false;
+    const text = fold([p.name, p.color, p.description, categoryName(p.category)].join(' '));
+    return words.every((w) => text.includes(w));
+  });
+}

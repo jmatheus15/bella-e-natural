@@ -29,6 +29,7 @@
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 19.5 12 7 19.5Z"/></symbol>
     <symbol id="i-mute" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4Z"/><path d="m22 9-6 6M16 9l6 6"/></symbol>
     <symbol id="i-sound" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
     <symbol id="i-insta" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></symbol>
     <symbol id="i-wa" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
     <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
@@ -69,6 +70,10 @@
               </button>
               <ul class="menu__cats" id="menu-cats" hidden></ul>
             </li>
+            <li class="menu__item menu__item--extra"><a class="menu__link" href="#bem-estar">Beleza e bem-estar</a></li>
+            <li class="menu__item menu__item--extra"><a class="menu__link" href="#ofertas">Ofertas</a></li>
+            <li class="menu__item menu__item--extra"><a class="menu__link" href="#a-loja">A loja</a></li>
+            <li class="menu__item menu__item--extra"><a class="menu__link" href="#contato">Contato e localização</a></li>
           </ul>
           <div class="menu__foot">
             <a class="btn btn--dark" href="https://wa.me/5583999976274?text=Bella+all+natural" target="_blank" rel="noopener">
@@ -84,7 +89,10 @@
       <a class="wordmark" href="./"><span class="wordmark__bella">Bella</span> e Natural</a>
 
       <div class="header__actions">
-        <a class="icon-btn" href="https://www.instagram.com/bellaaenatural/" target="_blank" rel="noopener" aria-label="Instagram @bellaaenatural (abre em nova aba)">
+        <button class="icon-btn" id="search-open" type="button" aria-label="Buscar produtos" aria-haspopup="dialog" aria-controls="search">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        </button>
+        <a class="icon-btn header__insta" href="https://www.instagram.com/bellaaenatural/" target="_blank" rel="noopener" aria-label="Instagram @bellaaenatural (abre em nova aba)">
           <svg class="icon" aria-hidden="true"><use href="#i-insta"/></svg>
         </a>
         <a class="icon-btn" href="https://wa.me/5583999976274?text=Bella+all+natural" target="_blank" rel="noopener" aria-label="WhatsApp da loja (abre em nova aba)">
@@ -100,7 +108,8 @@
       <div class="wrap">
         <div class="banner hero__box">
           <div class="banner__media">
-            <video class="banner__video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+            <video class="banner__video" autoplay muted loop playsinline preload="auto" poster="images/banners/banner-principal.jpg" aria-hidden="true">
+              <source src="images/banners/banner-principal-celular.mp4" type="video/mp4" media="(max-width: 767px)">
               <source src="images/banners/banner-principal.mp4" type="video/mp4">
             </video>
           </div>
@@ -313,6 +322,36 @@
       <p class="footer__bottom">© <span id="year">2026</span> Bella e Natural</p>
     </div>
   </footer>
+
+  <dialog class="sheet search" id="search" aria-labelledby="search-title">
+    <div class="sheet__inner">
+      <div class="search__bar">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <label class="sr-only" for="search-input" id="search-title">Buscar produtos</label>
+        <input class="search__input" id="search-input" type="search" placeholder="Buscar: conjunto, macaquinho, óleo…" autocomplete="off" enterkeyhint="search">
+        <button class="icon-btn" type="button" data-close aria-label="Fechar busca"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <div class="search__body">
+        <div class="search__suggest" id="search-suggest">
+          <p class="search__hint">Sugestões</p>
+          <div class="search__chips">
+            <button class="chip" type="button" data-term="conjunto">Conjunto</button>
+            <button class="chip" type="button" data-term="macaquinho">Macaquinho</button>
+            <button class="chip" type="button" data-term="short">Short</button>
+            <button class="chip" type="button" data-term="rosa mosqueta">Rosa mosqueta</button>
+            <button class="chip" type="button" data-term="óleo">Óleo</button>
+            <button class="chip" type="button" data-term="infantil">Infantil</button>
+          </div>
+        </div>
+        <p class="search__count" id="search-count" aria-live="polite"></p>
+        <ul class="grid" id="search-results"></ul>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="sheet qv" id="quick-view" aria-labelledby="qv-title">
+    <div class="sheet__inner" id="qv-content"></div>
+  </dialog>
 
   <a class="wa-float" href="https://wa.me/5583999976274?text=Bella+all+natural" target="_blank" rel="noopener" aria-label="Pedir pelo WhatsApp (abre em nova aba)">
     <svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg>

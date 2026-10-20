@@ -19,3 +19,18 @@ test('productMessage usa o nome ou a categoria', () => {
   assert.match(productMessage({ name: 'Kit', available: false }, 'Kits'), /voltar ao estoque/);
   assert.equal(productMessage({ name: 'Macacão', color: 'Azul' }, 'Roupas Fitness'), 'Olá! Tenho interesse no produto Macacão (Azul) da Bella e Natural.');
 });
+
+test('searchProducts ignora acentos e exige todas as palavras', async () => {
+  const { searchProducts } = await import('../assets/js/format.js');
+  const list = [
+    { name: 'Óleo Essencial de Lavanda', color: '10 ml', category: 'oleos', description: '' },
+    { name: 'Macaquinho com zíper e gola', color: 'Várias cores', category: 'fitness', description: '' },
+    { name: '', color: '', category: 'oleos', description: '' },
+  ];
+  const cat = (id) => ({ oleos: 'Óleos', fitness: 'Fitness Feminino' })[id];
+  assert.deepEqual(searchProducts(list, 'oleo lavanda', cat).map((p) => p.name), ['Óleo Essencial de Lavanda']);
+  assert.equal(searchProducts(list, 'ZIPER', cat).length, 1);
+  assert.equal(searchProducts(list, 'feminino', cat).length, 1);
+  assert.equal(searchProducts(list, '   ', cat).length, 0);
+  assert.equal(searchProducts(list, 'oleos', cat).length, 1); // espaço reservado (sem nome) nunca aparece
+});
