@@ -157,7 +157,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* Banner principal no formato da referência: faixa larga e baixa, título em uma linha, controles no canto */
 .hero__box { min-height: min(72svh, 620px); }
 @media (min-width: 768px) { .hero__box { min-height: 0; aspect-ratio: 16 / 9; } }
-@media (min-width: 1024px) { .hero__box { aspect-ratio: 8 / 3; min-height: 440px; } }
+/* faixa 8:3 calculada pela largura (aspect-ratio + min-height alargaria a caixa além da tela) */
+@media (min-width: 1024px) { .hero__box { aspect-ratio: auto; height: clamp(440px, calc((100vw - 2 * var(--gutter)) * .375), 570px); } }
 .hero__title { max-width: none; font-size: clamp(2.25rem, 3.4vw, 3rem); }
 .hero__title span { display: inline-block; } /* quebra só entre as frases */
 .hero .banner__text { max-width: 46ch; margin-top: 10px; font-size: 14px; }
